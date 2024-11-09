@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Women's Health Care website providing consultation, self-care tools, educational resources, and contact information.">
+    <title>Women's Health Care</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff8da3;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        nav {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            background-color: #ff8da3;
+            color: white;
+        }
+        section {
+            padding: 30px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #ff8da3;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .card {
+            background-color: #fafafa;
+            padding: 20px;
+            flex: 1;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            color: #ff8da3;
+        }
+        .card p {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Women's Health Care</h1>
+    <p>Empowering Women Through Knowledge and Care</p>
+</header>
+
+<nav>
+    <a href="#doctor-consultation">Doctor Consultation</a>
+    <a href="#self-care-tools">Self-Care Tools</a>
+    <a href="#educational-resources">Educational Resources</a>
+    <a href="#contact-us">Contact Us</a>
+</nav>
+
+<main class="container">
+    <!-- Doctor Consultation Section -->
+    <section id="doctor-consultation">
+        <h2>Doctor Consultation</h2>
+        <p>Find experienced and caring doctors for your health needs. Consult with specialists in various fields such as gynecology, reproductive health, mental health, and more.</p>
+        <div class="row">
+            <div class="card">
+                <h3>Online Consultation</h3>
+                <p>Connect with a doctor via online video calls for convenience and privacy. Get medical advice from the comfort of your home.</p>
+            </div>
+            <div class="card">
+                <h3>In-Person Consultation</h3>
+                <p>Visit our healthcare center for face-to-face consultations with highly skilled healthcare professionals.</p>
+            </div>
+            <div class="card">
+                <h3>Emergency Care</h3>
+                <p>If you need immediate medical assistance, we offer 24/7 emergency care services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Self-Care Tools Section -->
+    <section id="self-care-tools">
+        <h2>Self-Care Tools</h2>
+        <p>Empower yourself with the right tools for physical and mental well-being. Explore our self-care resources.</p>
+        <div class="row">
+            <div class="card">
+                <h3>Nutrition Tracker</h3>
+                <p>Keep track of your meals and nutritional intake to maintain a balanced diet and healthy lifestyle.</p>
+            </div>
+            <div class="card">
+                <h3>Exercise Plans</h3>
+                <p>Follow customized workout plans that cater to your fitness goals, whether it's for general health or specific conditions.</p>
+            </div>
+            <div class="card">
+                <h3>Stress Management</h3>
+                <p>Learn techniques for reducing stress, anxiety, and improving mental health, including mindfulness exercises and breathing techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Resources Section -->
+    <section id="educational-resources">
+        <h2>Educational Resources</h2>
+        <p>Access a range of educational materials to understand your health better. Our resources are designed to educate, empower, and inform.</p>
+        <div class="row">
+            <div class="card">
+                <h3>Articles and Blogs</h3>
+                <p>Read informative articles on topics like pregnancy, menopause, mental health, and more. Updated regularly for your benefit.</p>
+            </div>
+            <div class="card">
+                <h3>Video Tutorials</h3>
+                <p>Watch expert videos on health, wellness, and self-care practices. Learn from doctors and specialists in a visual format.</p>
+            </div>
+            <div class="card">
+                <h3>Workshops and Webinars</h3>
+                <p>Join online workshops and webinars that cover a wide range of health-related topics. Participate in live Q&A sessions with professionals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or would like to schedule a consultation, feel free to get in touch with us.</p>
+        <form action="submit_form.php" method="POST">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="message">Your Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Women's Health Care. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+
+
+
