@@ -74,6 +74,34 @@
         .card p {
             color: #333;
         }
+        
+        #catCanvas {
+          border: 2px solid #ddd;
+          cursor: pointer;
+          background-color: #ffebcc;
+        }
+        .counter {
+          font-size: 1.2em;
+          margin-top: 10px;
+        }
+
+input[type="submit"] {
+    background: linear-gradient(45deg, #ff8da3, #ff627f);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+        
     </style>
 </head>
 <body>
@@ -111,26 +139,47 @@
         </div>
     </section>
 
-    <!-- Self-Care Tools Section -->
-    <section id="self-care-tools">
-        <h2>Self-Care Tools</h2>
-        <p>Empower yourself with the right tools for physical and mental well-being. Explore our self-care resources.</p>
-        <div class="row">
-            <div class="card">
-                <h3>Nutrition Tracker</h3>
-                <p>Keep track of your meals and nutritional intake to maintain a balanced diet and healthy lifestyle.</p>
-            </div>
-            <div class="card">
-                <h3>Exercise Plans</h3>
-                <p>Follow customized workout plans that cater to your fitness goals, whether it's for general health or specific conditions.</p>
-            </div>
-            <div class="card">
-                <h3>Stress Management</h3>
-                <p>Learn techniques for reducing stress, anxiety, and improving mental health, including mindfulness exercises and breathing techniques.</p>
-            </div>
+<!-- Self-Care Tools Section -->
+<section id="self-care-tools">
+    <h2>Self-Care Tools</h2>
+    <p>Empower yourself with the right tools for physical and mental well-being. Explore our self-care resources.</p>
+    <div class="row">
+        <div class="card">
+            <h3><a href="nutrition-tracker.html">Nutrition Tracker</a></h3>
+            <p>Keep track of your meals and nutritional intake to maintain a balanced diet and healthy lifestyle.</p>
         </div>
-    </section>
+        <div class="card">
+            <h3><a href="exercise-plans.html">Exercise Plans</a></h3>
+            <p>Follow customized workout plans that cater to your fitness goals, whether it's for general health or specific conditions.</p>
+        </div>
+        <div class="card">
+            <h3><a href="stress-management.html">Stress Management</a></h3>
+            <p>Learn techniques for reducing stress, anxiety, and improving mental health, including mindfulness exercises and breathing techniques.</p>
+        </div>
+        <div class="card">
+            <h3><a href="period-tracker.html">Period Tracker</a></h3>
+            <p>Track your menstrual cycle and receive insights on your health.</p>
+        </div>
+        <div class="card">
+            <h3><a href="daily-journal.html">Daily Journal and Reflection Diary</a></h3>
+            <p>Record your thoughts and reflections to boost mental well-being.</p>
+        </div>
+        <div class="card">
+            <h3><a href="slap-cat-game.html">Stress Buster: Slap the Cat Game</a></h3>
+            <p>Take a break and relieve stress with this fun, interactive game.</p>
+        </div>
+    </div>
+</section>
 
+        <!-- Placeholder for Game -->
+        <div id="slap-cat-game">
+          <h3>Stress Buster: Slap Cat Game</h3>
+          <canvas id="catCanvas" width="200" height="200"></canvas>
+          <div class="counter">Slaps: <span id="slapCount">0</span></div>
+          <p>Tap the cat to relieve stress!</p>
+        </div>
+
+</section>
     <!-- Educational Resources Section -->
     <section id="educational-resources">
         <h2>Educational Resources</h2>
@@ -150,32 +199,166 @@
             </div>
         </div>
     </section>
+<!-- Book Section -->
+    <section id="book">
+        <h2>Our Book</h2>
+        <p>We have created an informative book to help you navigate various aspects of women's health. Download the book to gain deeper insights into maintaining a healthy and balanced life.</p>
+        <a href="file:///C:/Users/admin/Downloads/BOOKDRAFT.pdf" class="book-link" target="_blank">Download the Book (PDF)</a>
+    </section>
 
     <!-- Contact Us Section -->
     <section id="contact-us">
         <h2>Contact Us</h2>
         <p>If you have any questions or would like to schedule a consultation, feel free to get in touch with us.</p>
         <form action="submit_form.php" method="POST">
-            <label for="name">Your Name:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
-            
-            <label for="email">Your Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
-            
-            <label for="message">Your Message:</label><br>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required><br>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" required></textarea><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+
+            <label for="blood-group">Blood Group:</label>
+            <select id="blood-group" name="blood-group" required>
+                <option value="select blood group">select blood group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select><br><br>
+
+            <label for="message">Your Message:</label>
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
-            
+
             <input type="submit" value="Submit">
         </form>
+        <br>
+        <br>
+        <br>
     </section>
+    
 </main>
 
+    
 <footer>
     <p>&copy; 2024 Women's Health Care. All rights reserved.</p>
 </footer>
+<script>
+    const canvas = document.getElementById('catCanvas');
+    const ctx = canvas.getContext('2d');
+    const slapCounter = document.getElementById('slapCount');
+    let slaps = 0;
+
+    // Function to draw a normal cat face
+    function drawCat() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw cat face
+        ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, Math.PI * 2); // head
+        ctx.fillStyle = "#FFDDC1";
+        ctx.fill();
+        ctx.stroke();
+
+        // Draw eyes
+        ctx.beginPath();
+        ctx.arc(80, 90, 5, 0, Math.PI * 2); // left eye
+        ctx.arc(120, 90, 5, 0, Math.PI * 2); // right eye
+        ctx.fillStyle = "#333";
+        ctx.fill();
+
+        // Draw mouth
+        ctx.beginPath();
+        ctx.moveTo(90, 120);
+        ctx.quadraticCurveTo(100, 130, 110, 120); // happy mouth
+        ctx.stroke();
+
+        // Draw whiskers
+        ctx.beginPath();
+        ctx.moveTo(70, 110);
+        ctx.lineTo(50, 110); // left whisker
+        ctx.moveTo(130, 110);
+        ctx.lineTo(150, 110); // right whisker
+        ctx.stroke();
+    }
+
+    // Function to draw a "slapped" cat face
+    function drawSlappedCat() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw cat face
+        ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, Math.PI * 2); // head
+        ctx.fillStyle = "#FFDDC1";
+        ctx.fill();
+        ctx.stroke();
+
+        // Draw eyes (X eyes for the slapped effect)
+        ctx.beginPath();
+        ctx.moveTo(75, 85);
+        ctx.lineTo(85, 95);
+        ctx.moveTo(85, 85);
+        ctx.lineTo(75, 95);
+
+        ctx.moveTo(115, 85);
+        ctx.lineTo(125, 95);
+        ctx.moveTo(125, 85);
+        ctx.lineTo(115, 95);
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Draw a surprised mouth
+        ctx.beginPath();
+        ctx.arc(100, 120, 10, 0, Math.PI * 2); // round mouth
+        ctx.stroke();
+
+        // Draw whiskers
+        ctx.beginPath();
+        ctx.moveTo(70, 110);
+        ctx.lineTo(50, 110); // left whisker
+        ctx.moveTo(130, 110);
+        ctx.lineTo(150, 110); // right whisker
+        ctx.stroke();
+    }
+
+    // Function to handle the slap and update the slap count
+    function slapCat() {
+        slaps++;
+        slapCounter.textContent = slaps;
+
+        // Draw the slapped cat for a short time
+        drawSlappedCat();
+        setTimeout(drawCat, 200); // revert to normal face after 200ms
+    }
+
+    // Initial cat drawing
+    drawCat();
+
+    // Event listener for slapping the cat
+    canvas.addEventListener('click', slapCat);
+</script>
+
 
 </body>
 </html>
+
+
+
+
+
 
 
 
