@@ -3,17 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nutrition Tracker</title>
+    <title>Professional Nutrition Tracker</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { color: #ff8da3; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFE4E1;
+            color: #333;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1, h3 {
+            color: #5a5af1;
+        }
+        .tracker-section {
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .progress-bar {
+            margin-top: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            background-color: #5a5af1;
+            height: 20px;
+            width: 0;
+            transition: width 0.3s;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+        .summary-section {
+            padding: 15px;
+            background-color: #5a5af1;
+            color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Nutrition Tracker</h1>
-    </header>
-    <p>Track your meals and nutritional intake to maintain a balanced diet and a healthy lifestyle.</p>
-    <!-- Add interactive elements for tracking nutrition here -->
+    <div class="container">
+        <h2>Daily Water and Calorie Intake Calculator</h2>
+        <p>Enter your age to see your recommended daily intake.</p>
+        <input type="number" id="ageInput" placeholder="Enter your age">
+        <button onclick="calculateIntake()">Calculate</button>
+        <div id="result" class="result"></div>
+    </div>
+    
+    <script>
+        function calculateIntake() {
+            const age = parseInt(document.getElementById('ageInput').value);
+            let waterIntake;
+            let calorieIntake;
+    
+            if (isNaN(age) || age <= 0) {
+                document.getElementById('result').innerHTML = "Please enter a valid age.";
+                return;
+            }
+    
+            // Calculate daily water intake in liters based on age
+            if (age < 18) {
+                waterIntake = 1.5;
+                calorieIntake = 2000;
+            } else if (age <= 55) {
+                waterIntake = 2.7;
+                calorieIntake = 2500;
+            } else {
+                waterIntake = 2.5;
+                calorieIntake = 2200;
+            }
+    
+            // Display the result
+            document.getElementById('result').innerHTML = `
+                Based on your age of ${age} years:
+                <br>• Recommended water intake: <strong>${waterIntake} liters per day</strong>
+                <br>• Recommended calorie intake: <strong>${calorieIntake} kcal per day</strong>
+            `;
+        }
+    </script>
+    <h1>Nutrition Tracker</h1>
+
+    <!-- Calorie and Macronutrient Intake Tracker -->
+    <div class="tracker-section">
+        <h3>Daily Calorie & Macronutrient Intake</h3>
+
+        <!-- Meal Inputs -->
+        <div id="meal-inputs">
+            <div class="input-group">
+                <label>Breakfast</label>
+                <input type="number" placeholder="Calories" id="breakfast-calories" oninput="updateSummary()">
+                <input type="number" placeholder="Protein (g)" id="breakfast-protein" oninput="updateSummary()">
+                <input type="number" placeholder="Fats (g)" id="breakfast-fats" oninput="updateSummary()">
+                <input type="number" placeholder="Carbs (g)" id="breakfast-carbs" oninput="updateSummary()">
+            </div>
+            <!-- Repeat for Lunch, Dinner, and Snacks -->
+            <div class="input-group">
+                <label>Lunch</label>
+                <input type="number" placeholder="Calories" id="lunch-calories" oninput="updateSummary()">
+                <input type="number" placeholder="Protein (g)" id="lunch-protein" oninput="updateSummary()">
+                <input type="number" placeholder="Fats (g)" id="lunch-fats" oninput="updateSummary()">
+                <input type="number" placeholder="Carbs (g)" id="lunch-carbs" oninput="updateSummary()">
+            </div>
+            <div class="input-group">
+                <label>Dinner</label>
+                <input type="number" placeholder="Calories" id="dinner-calories" oninput="updateSummary()">
+                <input type="number" placeholder="Protein (g)" id="dinner-protein" oninput="updateSummary()">
+                <input type="number" placeholder="Fats (g)" id="dinner-fats" oninput="updateSummary()">
+                <input type="number" placeholder="Carbs (g)" id="dinner-carbs" oninput="updateSummary()">
+            </div>
+            <div class="input-group">
+                <label>Snacks</label>
+                <input type="number" placeholder="Calories" id="snacks-calories" oninput="updateSummary()">
+                <input type="number" placeholder="Protein (g)" id="snacks-protein" oninput="updateSummary()">
+                <input type="number" placeholder="Fats (g)" id="snacks-fats" oninput="updateSummary()">
+                <input type="number" placeholder="Carbs (g)" id="snacks-carbs" oninput="updateSummary()">
+            </div>
+        </div>
+    </div>
+
+    <!-- Water Intake Tracker -->
+    <div class="tracker-section">
+        <h3>Water Intake</h3>
+        <div class="input-group">
+            <label>Glasses of Water (250ml each)</label>
+            <input type="number" id="water-intake" min="0" max="20" placeholder="0" oninput="updateWaterProgress()">
+        </div>
+        <div class="progress-bar">
+            <div id="water-progress" class="progress">0%</div>
+        </div>
+    </div>
+
+    <!-- Summary and Analysis -->
+    <div class="summary-section">
+        <h3>Summary</h3>
+        <p id="summary-text">Calories: 0, Protein: 0g, Fats: 0g, Carbs: 0g</p>
+    </div>
+
+    <script>
+        const calorieGoal = 2000;
+        const waterGoal = 8;
+
+        function updateSummary() {
+            const meals = ["breakfast", "lunch", "dinner", "snacks"];
+            let totalCalories = 0, totalProtein = 0, totalFats = 0, totalCarbs = 0;
+
+            meals.forEach(meal => {
+                totalCalories += Number(document.getElementById(`${meal}-calories`).value) || 0;
+                totalProtein += Number(document.getElementById(`${meal}-protein`).value) || 0;
+                totalFats += Number(document.getElementById(`${meal}-fats`).value) || 0;
+                totalCarbs += Number(document.getElementById(`${meal}-carbs`).value) || 0;
+            });
+
+            document.getElementById("summary-text").textContent = 
+                `Calories: ${totalCalories}, Protein: ${totalProtein}g, Fats: ${totalFats}g, Carbs: ${totalCarbs}g`;
+
+            // Update progress bar for calories
+            const progressPercent = Math.min((totalCalories / calorieGoal) * 100, 100);
+            document.querySelector('.progress').style.width = `${progressPercent}%`;
+            document.querySelector('.progress').textContent = `${Math.round(progressPercent)}% of daily goal`;
+        }
+
+        function updateWaterProgress() {
+            const waterIntake = Number(document.getElementById("water-intake").value);
+            const progressPercent = Math.min((waterIntake / waterGoal) * 100, 100);
+            document.getElementById("water-progress").style.width = `${progressPercent}%`;
+            document.getElementById("water-progress").textContent = `${Math.round(progressPercent)}%`;
+        }
+    </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health and Nutrition Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FAF3E0;
+            color: #5D5C61;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h3 {
+            color: #379683;
+        }
+        .quiz-section {
+            margin-top: 20px;
+            background-color: #8EE4AF;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .results-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #EDF5E1;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #5CDB95;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Complete Health and Nutrition Quiz</h1>
+    <p>Answer the questions below to get personalized insights into your health and wellness.</p>
+
+    <form id="healthQuiz">
+        <!-- Nutrition Questions -->
+        <div class="quiz-section">
+            <h3>Nutrition</h3>
+            <div class="question">
+                <label>1. How many servings of fruits and vegetables do you consume daily?</label>
+                <input type="radio" name="fruitsVeggies" value="0" required> Less than 1<br>
+                <input type="radio" name="fruitsVeggies" value="1"> 1-2<br>
+                <input type="radio" name="fruitsVeggies" value="2"> 3-4<br>
+                <input type="radio" name="fruitsVeggies" value="3"> 5 or more
+            </div>
+            <div class="question">
+                <label>2. Do you drink at least 8 glasses of water daily?</label>
+                <input type="radio" name="waterIntake" value="0" required> Rarely<br>
+                <input type="radio" name="waterIntake" value="1"> Sometimes<br>
+                <input type="radio" name="waterIntake" value="2"> Often<br>
+                <input type="radio" name="waterIntake" value="3"> Always
+            </div>
+        </div>
+
+        <!-- Lifestyle Habits -->
+        <div class="quiz-section">
+            <h3>Lifestyle Habits</h3>
+            <div class="question">
+                <label>3. How many hours of sleep do you get on average?</label>
+                <input type="radio" name="sleepHours" value="0" required> Less than 5<br>
+                <input type="radio" name="sleepHours" value="1"> 5-6<br>
+                <input type="radio" name="sleepHours" value="2"> 7-8<br>
+                <input type="radio" name="sleepHours" value="3"> More than 8
+            </div>
+            <div class="question">
+                <label>4. How often do you consume sugary drinks or snacks?</label>
+                <input type="radio" name="sugarIntake" value="3" required> Daily<br>
+                <input type="radio" name="sugarIntake" value="2"> A few times a week<br>
+                <input type="radio" name="sugarIntake" value="1"> Occasionally<br>
+                <input type="radio" name="sugarIntake" value="0"> Rarely
+            </div>
+        </div>
+
+        <!-- Physical Activity -->
+        <div class="quiz-section">
+            <h3>Physical Activity</h3>
+            <div class="question">
+                <label>5. How often do you exercise?</label>
+                <input type="radio" name="exerciseFrequency" value="0" required> Rarely<br>
+                <input type="radio" name="exerciseFrequency" value="1"> 1-2 times a week<br>
+                <input type="radio" name="exerciseFrequency" value="2"> 3-4 times a week<br>
+                <input type="radio" name="exerciseFrequency" value="3"> 5 or more times a week
+            </div>
+            <div class="question">
+                <label>6. What type of physical activities do you usually engage in?</label>
+                <input type="checkbox" name="exerciseType" value="1"> Cardio<br>
+                <input type="checkbox" name="exerciseType" value="1"> Strength training<br>
+                <input type="checkbox" name="exerciseType" value="1"> Yoga<br>
+                <input type="checkbox" name="exerciseType" value="1"> Other<br>
+            </div>
+        </div>
+
+        <!-- Mental Health -->
+        <div class="quiz-section">
+            <h3>Mental Health</h3>
+            <div class="question">
+                <label>7. How often do you feel stressed?</label>
+                <input type="radio" name="stressFrequency" value="0" required> Always<br>
+                <input type="radio" name="stressFrequency" value="1"> Often<br>
+                <input type="radio" name="stressFrequency" value="2"> Sometimes<br>
+                <input type="radio" name="stressFrequency" value="3"> Rarely
+            </div>
+            <div class="question">
+                <label>8. Do you engage in relaxation practices (e.g., meditation, deep breathing)?</label>
+                <input type="radio" name="relaxationPractices" value="0" required> No<br>
+                <input type="radio" name="relaxationPractices" value="1"> Rarely<br>
+                <input type="radio" name="relaxationPractices" value="2"> Occasionally<br>
+                <input type="radio" name="relaxationPractices" value="3"> Regularly
+            </div>
+        </div>
+
+        <button type="button" onclick="calculateResults()">Get Your Health Score</button>
+    </form>
+
+    <div class="results-section" id="results" style="display: none;">
+        <h3>Your Health Score</h3>
+        <p id="healthScore"></p>
+        <p id="recommendations"></p>
+    </div>
+
+    <script>
+        function calculateResults() {
+            const form = document.forms['healthQuiz'];
+            const quizSections = ['fruitsVeggies', 'waterIntake', 'sleepHours', 'sugarIntake', 'exerciseFrequency', 'stressFrequency', 'relaxationPractices'];
+            let score = 0;
+
+            quizSections.forEach(section => {
+                const selectedOption = form[section].value;
+                score += parseInt(selectedOption);
+            });
+
+            let scoreMessage;
+            if (score >= 18) {
+                scoreMessage = "Excellent! You have a strong foundation for health and wellness.";
+            } else if (score >= 12) {
+                scoreMessage = "Good job! There are areas for improvement, but you're on the right track.";
+            } else {
+                scoreMessage = "Let's make some changes to improve your health and well-being.";
+            }
+
+            document.getElementById("healthScore").innerText = "Your score: " + score;
+            document.getElementById("recommendations").innerText = scoreMessage;
+            document.getElementById("results").style.display = "block";
+        }
+    </script>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Health and Nutrition Quiz</title>
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+             background-color: #FAF3E0;
+             color: #5D5C61;
+             margin: 0;
+             padding: 20px;
+         }
+         h1, h3 {
+             color: #379683;
+         }
+         .quiz-section {
+             margin-top: 20px;
+             background-color: #8EE4AF;
+             padding: 15px;
+             border-radius: 8px;
+         }
+         .question {
+             margin-bottom: 15px;
+         }
+         label {
+             display: block;
+             margin-bottom: 5px;
+         }
+         .results-section {
+             margin-top: 20px;
+             padding: 15px;
+             background-color: #EDF5E1;
+             border-radius: 8px;
+         }
+         button {
+             background-color: #7cefe9;
+             color: white;
+             padding: 10px;
+             border: none;
+             border-radius: 8px;
+             cursor: pointer;
+             font-size: 16px;
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <h1>Complete Health and Nutrition Quiz</h1>
+     <p>Answer the questions below to get personalized insights into your health and wellness.</p>
+ 
+     <form id="healthQuiz">
+         <!-- Nutrition Questions -->
+         <div class="quiz-section">
+             <h3>Nutrition</h3>
+             <div class="question">
+                 <label>1. How many servings of fruits and vegetables do you consume daily?</label>
+                 <input type="radio" name="fruitsVeggies" value="0" required> Less than 1<br>
+                 <input type="radio" name="fruitsVeggies" value="1"> 1-2<br>
+                 <input type="radio" name="fruitsVeggies" value="2"> 3-4<br>
+                 <input type="radio" name="fruitsVeggies" value="3"> 5 or more
+             </div>
+             <div class="question">
+                 <label>2. Do you drink at least 8 glasses of water daily?</label>
+                 <input type="radio" name="waterIntake" value="0" required> Rarely<br>
+                 <input type="radio" name="waterIntake" value="1"> Sometimes<br>
+                 <input type="radio" name="waterIntake" value="2"> Often<br>
+                 <input type="radio" name="waterIntake" value="3"> Always
+             </div>
+             <div class="question">
+                 <label>3. Do you have regular meal times (breakfast, lunch, dinner)?</label>
+                 <input type="radio" name="mealRegularity" value="0" required> Rarely<br>
+                 <input type="radio" name="mealRegularity" value="1"> Sometimes<br>
+                 <input type="radio" name="mealRegularity" value="2"> Often<br>
+                 <input type="radio" name="mealRegularity" value="3"> Always
+             </div>
+         </div>
+ 
+         <!-- Lifestyle Habits -->
+         <div class="quiz-section">
+             <h3>Lifestyle Habits</h3>
+             <div class="question">
+                 <label>4. How many hours of sleep do you get on average?</label>
+                 <input type="radio" name="sleepHours" value="0" required> Less than 5<br>
+                 <input type="radio" name="sleepHours" value="1"> 5-6<br>
+                 <input type="radio" name="sleepHours" value="2"> 7-8<br>
+                 <input type="radio" name="sleepHours" value="3"> More than 8
+             </div>
+             <div class="question">
+                 <label>5. How often do you consume sugary drinks or snacks?</label>
+                 <input type="radio" name="sugarIntake" value="3" required> Daily<br>
+                 <input type="radio" name="sugarIntake" value="2"> A few times a week<br>
+                 <input type="radio" name="sugarIntake" value="1"> Occasionally<br>
+                 <input type="radio" name="sugarIntake" value="0"> Rarely
+             </div>
+             <div class="question">
+                 <label>6. How often do you consume fried or processed foods?</label>
+                 <input type="radio" name="processedFoods" value="0" required> Daily<br>
+                 <input type="radio" name="processedFoods" value="1"> 3-4 times a week<br>
+                 <input type="radio" name="processedFoods" value="2"> 1-2 times a week<br>
+                 <input type="radio" name="processedFoods" value="3"> Rarely
+             </div>
+         </div>
+ 
+         <!-- Physical Activity -->
+         <div class="quiz-section">
+             <h3>Physical Activity</h3>
+             <div class="question">
+                 <label>7. How often do you exercise?</label>
+                 <input type="radio" name="exerciseFrequency" value="0" required> Rarely<br>
+                 <input type="radio" name="exerciseFrequency" value="1"> 1-2 times a week<br>
+                 <input type="radio" name="exerciseFrequency" value="2"> 3-4 times a week<br>
+                 <input type="radio" name="exerciseFrequency" value="3"> 5 or more times a week
+             </div>
+             <div class="question">
+                 <label>8. What type of physical activities do you usually engage in?</label>
+                 <input type="checkbox" name="exerciseType" value="1"> Cardio<br>
+                 <input type="checkbox" name="exerciseType" value="1"> Strength training<br>
+                 <input type="checkbox" name="exerciseType" value="1"> Yoga<br>
+                 <input type="checkbox" name="exerciseType" value="1"> Other<br>
+             </div>
+         </div>
+ 
+         <!-- Mental Health -->
+         <div class="quiz-section">
+             <h3>Mental and Social Health</h3>
+             <div class="question">
+                 <label>9. How often do you feel stressed?</label>
+                 <input type="radio" name="stressFrequency" value="0" required> Always<br>
+                 <input type="radio" name="stressFrequency" value="1"> Often<br>
+                 <input type="radio" name="stressFrequency" value="2"> Sometimes<br>
+                 <input type="radio" name="stressFrequency" value="3"> Rarely
+             </div>
+             <div class="question">
+                 <label>10. How would you describe your social relationships?</label>
+                 <input type="radio" name="socialHealth" value="3" required> Strong support network<br>
+                 <input type="radio" name="socialHealth" value="2"> A few close friends<br>
+                 <input type="radio" name="socialHealth" value="1"> Limited social interactions<br>
+                 <input type="radio" name="socialHealth" value="0"> Isolated
+             </div>
+             <div class="question">
+                 <label>11. How often do you take breaks to relax during your day?</label>
+                 <input type="radio" name="relaxationFrequency" value="0" required> Rarely<br>
+                 <input type="radio" name="relaxationFrequency" value="1"> Sometimes<br>
+                 <input type="radio" name="relaxationFrequency" value="2"> Often<br>
+                 <input type="radio" name="relaxationFrequency" value="3"> Always
+             </div>
+             <div class="question">
+                 <label>12. Do you practice mindfulness, meditation, or any relaxation techniques?</label>
+                 <input type="radio" name="mindfulnessPractice" value="0" required> Never<br>
+                 <input type="radio" name="mindfulnessPractice" value="1"> Occasionally<br>
+                 <input type="radio" name="mindfulnessPractice" value="2"> Weekly<br>
+                 <input type="radio" name="mindfulnessPractice" value="3"> Daily
+             </div>
+         </div>
+ 
+         <!-- General Health -->
+         <div class="quiz-section">
+             <h3>General Health</h3>
+             <div class="question">
+                 <label>13. Do you regularly visit a doctor for check-ups?</label>
+                 <input type="radio" name="checkups" value="0" required> Never<br>
+                 <input type="radio" name="checkups" value="1"> Rarely<br>
+                 <input type="radio" name="checkups" value="2"> Once a year<br>
+                 <input type="radio" name="checkups" value="3"> Regularly
+             </div>
+             <div class="question">
+                 <label>14. Do you smoke or use any tobacco products?</label>
+                 <input type="radio" name="tobaccoUse" value="0" required> Regularly<br>
+                 <input type="radio" name="tobaccoUse" value="1"> Occasionally<br>
+                 <input type="radio" name="tobaccoUse" value="2"> Rarely<br>
+                 <input type="radio" name="tobaccoUse" value="3"> Never
+             </div>
+             <div class="question">
+                 <label>15. Do you take any supplements or vitamins regularly?</label>
+                 <input type="radio" name="supplements" value="3" required> Yes, daily<br>
+                 <input type="radio" name="supplements" value="2"> Yes, sometimes<br>
+                 <input type="radio" name="supplements" value="1"> Only occasionally<br>
+                 <input type="radio" name="supplements" value="0"> No, never
+             </div>
+         </div>
+ 
+         <!-- Submit -->
+         <button type="submit">Submit Quiz</button>
+     </form>
+ 
+     <div class="results-section" id="results">
+         <h3>Your Health Assessment:</h3>
+         <p>Your responses will provide insights to help you build a healthier lifestyle.</p>
+     </div>
+ 
 </body>
 </html>

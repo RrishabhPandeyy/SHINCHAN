@@ -1,20 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Period Tracker</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { color: #ff8da3; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Period Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #FFE4E1;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #ff8da3;
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+    input[type="date"], input[type="number"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #ff8da3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #ff5673;
+    }
+    .symptom-tracker {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fce4ec;
+      border-radius: 8px;
+    }
+    .notification-option {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Period Tracker</h1>
-    </header>
-    <p>Use this tool to track your menstrual cycle and receive health insights.</p>
-    <!-- Add a period tracker interface here -->
+
+<div class="container">
+  <h1>Period Tracker</h1>
+  <p>Track your menstrual cycle and predict upcoming periods.</p>
+
+  <!-- Last Period Date -->
+  <label for="last-period">Last Period Date</label>
+  <input type="date" id="last-period" name="last-period">
+
+  <!-- Cycle Length -->
+  <label for="cycle-length">Average Cycle Length (in days)</label>
+  <input type="number" id="cycle-length" name="cycle-length" placeholder="e.g., 28">
+
+  <!-- Prediction Button -->
+  <button onclick="predictPeriod()">Predict Next Period</button>
+
+  <!-- Display Predicted Date -->
+  <p id="prediction-result" style="margin-top: 15px; font-weight: bold;"></p>
+
+  <!-- Symptom Tracker Section -->
+  <div class="symptom-tracker">
+    <h2>Symptom Tracker</h2>
+    <label for="symptoms">Symptoms (optional)</label>
+    <textarea id="symptoms" name="symptoms" rows="4" placeholder="Log any symptoms or notes here..."></textarea>
+  </div>
+
+  <!-- Save Button -->
+  <button onclick="saveData()">Save Data</button>
+</div>
+
+<script>
+  function predictPeriod() {
+    const lastPeriodDate = document.getElementById("last-period").value;
+    const cycleLength = document.getElementById("cycle-length").value;
+
+    if (lastPeriodDate && cycleLength) {
+      const lastDate = new Date(lastPeriodDate);
+      lastDate.setDate(lastDate.getDate() + parseInt(cycleLength));
+      
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById("prediction-result").innerText = 
+        "Your next period is likely to start around " + lastDate.toLocaleDateString(undefined, options) + ".";
+    } else {
+      document.getElementById("prediction-result").innerText = "Please enter both your last period date and cycle length.";
+    }
+  }
+
+  function saveData() {
+    const lastPeriodDate = document.getElementById("last-period").value;
+    const cycleLength = document.getElementById("cycle-length").value;
+    const symptoms = document.getElementById("symptoms").value;
+    const email = document.getElementById("email").value;
+    const notify = document.getElementById("notify-checkbox").checked;
+
+    if (lastPeriodDate && cycleLength) {
+      // Save the data (this part can be expanded with actual data storage logic)
+      alert("Data saved successfully!");
+
+      if (notify && email) {
+        sendNotification(email);
+      }
+    } else {
+      alert("Please fill in the required fields.");
+    }
+  }
+
+  </script>
+
 </body>
 </html>
+
 

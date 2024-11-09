@@ -74,6 +74,16 @@
         .card p {
             color: #333;
         }
+        .book-link {
+            color: #ff8da3;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .book-link:hover {
+            color: #ce3390;
+        }
         
         #catCanvas {
           border: 2px solid #ddd;
@@ -83,6 +93,32 @@
         .counter {
           font-size: 1.2em;
           margin-top: 10px;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #ff8da3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            font-size: 18px;
+        }
+        input[type="submit"]:hover {
+            background-color: #e56f85;
         }
 
 input[type="submit"] {
@@ -102,6 +138,7 @@ input[type="submit"]:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
         
+
     </style>
 </head>
 <body>
@@ -115,6 +152,7 @@ input[type="submit"]:hover {
     <a href="#doctor-consultation">Doctor Consultation</a>
     <a href="#self-care-tools">Self-Care Tools</a>
     <a href="#educational-resources">Educational Resources</a>
+    <a href="#book">Book</a>
     <a href="#contact-us">Contact Us</a>
 </nav>
 
@@ -139,7 +177,7 @@ input[type="submit"]:hover {
         </div>
     </section>
 
-<!-- Self-Care Tools Section -->
+ <!-- Self-Care Tools Section -->
 <section id="self-care-tools">
     <h2>Self-Care Tools</h2>
     <p>Empower yourself with the right tools for physical and mental well-being. Explore our self-care resources.</p>
@@ -164,10 +202,6 @@ input[type="submit"]:hover {
             <h3><a href="daily-journal.html">Daily Journal and Reflection Diary</a></h3>
             <p>Record your thoughts and reflections to boost mental well-being.</p>
         </div>
-        <div class="card">
-            <h3><a href="slap-cat-game.html">Stress Buster: Slap the Cat Game</a></h3>
-            <p>Take a break and relieve stress with this fun, interactive game.</p>
-        </div>
     </div>
 </section>
 
@@ -179,7 +213,6 @@ input[type="submit"]:hover {
           <p>Tap the cat to relieve stress!</p>
         </div>
 
-</section>
     <!-- Educational Resources Section -->
     <section id="educational-resources">
         <h2>Educational Resources</h2>
@@ -199,11 +232,12 @@ input[type="submit"]:hover {
             </div>
         </div>
     </section>
-<!-- Book Section -->
+
+    <!-- Book Section -->
     <section id="book">
         <h2>Our Book</h2>
         <p>We have created an informative book to help you navigate various aspects of women's health. Download the book to gain deeper insights into maintaining a healthy and balanced life.</p>
-        <a href="file:///C:/Users/admin/Downloads/BOOKDRAFT.pdf" class="book-link" target="_blank">Download the Book (PDF)</a>
+        <a href=https://docs.google.com/document/d/1Dkz6cG8KpDnGJEiRToxhyOJ86SyZ7_GerMHYsnDQgMQ/edit?tab=t.0 class="book-link" target="_blank">Download the Book (PDF)</a>
     </section>
 
     <!-- Contact Us Section -->
@@ -239,7 +273,7 @@ input[type="submit"]:hover {
                 <option value="O-">O-</option>
             </select><br><br>
 
-            <label for="message">Your Message:</label>
+            <label for="message">Your Ailment:</label>
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
 
             <input type="submit" value="Submit">
@@ -248,89 +282,102 @@ input[type="submit"]:hover {
         <br>
         <br>
     </section>
-    
 </main>
 
-    
 <footer>
     <p>&copy; 2024 Women's Health Care. All rights reserved.</p>
-</footer>
+</foot>
+
 <script>
     const canvas = document.getElementById('catCanvas');
     const ctx = canvas.getContext('2d');
     const slapCounter = document.getElementById('slapCount');
     let slaps = 0;
 
-    // Function to draw a normal cat face
-    function drawCat() {
+    // Load the slap sound
+    const slapSound = new Audio('https://www.soundjay.com/button/beep-07.wav'); // Replace with actual sound file
+
+    // Function to draw the detailed cat face
+    function drawCat(color = "#FFDDC1") {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw cat face
         ctx.beginPath();
-        ctx.arc(100, 100, 50, 0, Math.PI * 2); // head
-        ctx.fillStyle = "#FFDDC1";
+        ctx.arc(100, 100, 60, 0, Math.PI * 2); // head
+        ctx.fillStyle = color; // Light tan or slapped color
+        ctx.fill();
+        ctx.stroke();
+
+        // Draw rounded ears
+        ctx.beginPath();
+        ctx.arc(40, 45, 20, 0, Math.PI * 2); // left rounded ear
+        ctx.arc(160, 45, 20, 0, Math.PI * 2); // right rounded ear
+        ctx.fillStyle = color;
         ctx.fill();
         ctx.stroke();
 
         // Draw eyes
         ctx.beginPath();
-        ctx.arc(80, 90, 5, 0, Math.PI * 2); // left eye
-        ctx.arc(120, 90, 5, 0, Math.PI * 2); // right eye
+        ctx.arc(75, 85, 8, 0, Math.PI * 2); // left eye
+        ctx.arc(125, 85, 8, 0, Math.PI * 2); // right eye
         ctx.fillStyle = "#333";
+        ctx.fill();
+
+        // Draw pupils
+        ctx.beginPath();
+        ctx.arc(75, 85, 4, 0, Math.PI * 2); // left pupil
+        ctx.arc(125, 85, 4, 0, Math.PI * 2); // right pupil
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+
+        // Draw nose (round)
+        ctx.beginPath();
+        ctx.arc(100, 105, 8, 0, Math.PI * 2); // round nose
+        ctx.fillStyle = "#FF6666"; // Pink nose
         ctx.fill();
 
         // Draw mouth
         ctx.beginPath();
-        ctx.moveTo(90, 120);
-        ctx.quadraticCurveTo(100, 130, 110, 120); // happy mouth
+        ctx.moveTo(90, 115);
+        ctx.quadraticCurveTo(100, 125, 110, 115);
         ctx.stroke();
 
         // Draw whiskers
         ctx.beginPath();
-        ctx.moveTo(70, 110);
-        ctx.lineTo(50, 110); // left whisker
-        ctx.moveTo(130, 110);
-        ctx.lineTo(150, 110); // right whisker
+        ctx.moveTo(60, 110);
+        ctx.lineTo(30, 105); // left whisker
+        ctx.moveTo(60, 120);
+        ctx.lineTo(30, 125);
+        ctx.moveTo(140, 110);
+        ctx.lineTo(170, 105); // right whisker
+        ctx.moveTo(140, 120);
+        ctx.lineTo(170, 125);
         ctx.stroke();
     }
 
-    // Function to draw a "slapped" cat face
+    // Function to draw a "slapped" cat face (crossed-out eyes and mouth)
     function drawSlappedCat() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw cat face
+        // Draw cat face with a color change (slapped color)
+        drawCat("#ff6f61"); // Change to a red-orange when slapped
+
+        // Draw crossed eyes
         ctx.beginPath();
-        ctx.arc(100, 100, 50, 0, Math.PI * 2); // head
-        ctx.fillStyle = "#FFDDC1";
-        ctx.fill();
+        ctx.moveTo(70, 75);
+        ctx.lineTo(80, 85);
+        ctx.moveTo(80, 75);
+        ctx.lineTo(70, 85);
+
+        ctx.moveTo(120, 75);
+        ctx.lineTo(130, 85);
+        ctx.moveTo(130, 75);
+        ctx.lineTo(120, 85);
         ctx.stroke();
 
-        // Draw eyes (X eyes for the slapped effect)
+        // Draw a sad mouth
         ctx.beginPath();
-        ctx.moveTo(75, 85);
-        ctx.lineTo(85, 95);
-        ctx.moveTo(85, 85);
-        ctx.lineTo(75, 95);
-
-        ctx.moveTo(115, 85);
-        ctx.lineTo(125, 95);
-        ctx.moveTo(125, 85);
-        ctx.lineTo(115, 95);
-        ctx.strokeStyle = "#333";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Draw a surprised mouth
-        ctx.beginPath();
-        ctx.arc(100, 120, 10, 0, Math.PI * 2); // round mouth
-        ctx.stroke();
-
-        // Draw whiskers
-        ctx.beginPath();
-        ctx.moveTo(70, 110);
-        ctx.lineTo(50, 110); // left whisker
-        ctx.moveTo(130, 110);
-        ctx.lineTo(150, 110); // right whisker
+        ctx.arc(100, 125, 10, Math.PI, Math.PI * 2); // sad mouth
         ctx.stroke();
     }
 
@@ -339,9 +386,12 @@ input[type="submit"]:hover {
         slaps++;
         slapCounter.textContent = slaps;
 
+        // Play the slap sound
+        slapSound.play();
+
         // Draw the slapped cat for a short time
         drawSlappedCat();
-        setTimeout(drawCat, 200); // revert to normal face after 200ms
+        setTimeout(() => drawCat(), 300); // revert to normal face after 300ms
     }
 
     // Initial cat drawing
