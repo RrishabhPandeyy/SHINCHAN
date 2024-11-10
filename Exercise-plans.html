@@ -3,17 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercise Plans</title>
+    <meta name="description" content="Customized workout plans for different fitness goals: yoga, weight loss, muscle building, and specific health conditions.">
+    <title>Customized Workout Plans</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { color: #ff8da3; }
+        /* Reset some basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: #e91e63;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: #e91e63;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ad1457;
+        }
+
+        section {
+            padding: 40px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1;
+            padding: 20px;
+            background-color: #f8bbd0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            color: #e91e63;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .sub-card {
+            background-color: #fce4ec;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sub-card h4 {
+            color: #ad1457;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .sub-card p {
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .sub-card a {
+            color: #ad1457;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .sub-card a:hover {
+            color: #e91e63;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>Exercise Plans</h1>
-    </header>
-    <p>Explore customized workout plans tailored to your fitness goals, whether for general health or specific conditions.</p>
-    <!-- Add exercise plan resources or an interactive exercise plan generator here -->
+
+<header>
+    <h1>Customized Workout Plans</h1>
+    <p>Your Personal Fitness Goals, Our Customized Plans</p>
+</header>
+
+<nav>
+    <a href="#goals">Fitness Goals</a>
+    <a href="#resources">Resources</a>
+</nav>
+
+<main class="container">
+    <section id="goals">
+        <h2>Fitness Goals</h2>
+        <p>Select a fitness goal to find the right workout plan tailored for you.</p>
+        <div class="row">
+            <div class="card">
+                <h3><a href="https://drive.google.com/file/d/17LEWm_HyhJrb9gL8Juj8GVxRFBC-D6D5/view?usp=drive_link" target="_blank" style="color: #e91e63; text-decoration: none;">Yoga</a></h3>
+                <p>Enhance flexibility, balance, and mental clarity with yoga exercises.</p>
+            </div>
+            <div class="card">
+                <h3>Weight Loss</h3>
+                <p>Focus on calorie-burning workouts for weight management.</p>
+
+                <!-- Sub-sections for Weight Loss -->
+                <div class="sub-card">
+                    <h4>Level-1</h4>
+                    <p>Start with low-impact exercises to build your stamina gradually. Perfect for those new to workouts.</p>
+                    <a href="https://drive.google.com/file/d/1vFUwqCf4ODinWAhg845i8hZyrkN8Ywsx/view?usp=drive_link" target="_blank">Beginner Plan (PDF)</a>
+                </div>
+                <div class="sub-card">
+                    <h4>Level-2</h4>
+                    <p>Increase intensity with interval training and moderate cardio exercises to boost calorie burn.</p>
+                    <a href="https://drive.google.com/file/d/1NKIeay5-lyqfp9RF6O3crqpbrC4XwgrX/view?usp=drive_link" target="_blank">Intermediate Plan (PDF)</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Muscle Building</h3>
+                <p>Gain strength with weight training and resistance exercises.</p>
+
+                <!-- Sub-sections for Muscle Building -->
+                <div class="sub-card">
+                    <h4>Level-3</h4>
+                    <p>Advance your strength training with progressive overload techniques. Ideal for intermediate lifters.</p>
+                    <a href="https://drive.google.com/file/d/1i-UcpkkURRNJEFDA933vqaV-z3Z2zKdZ/view?usp=drive_link" target="_blank">Level-3 Plan (PDF)</a>
+                </div>
+                <div class="sub-card">
+                    <h4>Level-4</h4>
+                    <p>Designed for advanced lifters, focusing on high-intensity training and strength gains.</p>
+                    <a href="https://drive.google.com/file/d/14RRUKgTA1VCL7VMeN0SxWGsd2_iesEYv/view?usp=drive_link" target="_blank">Level-4 Plan (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Customized Workout Plans. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
+
+
+
+

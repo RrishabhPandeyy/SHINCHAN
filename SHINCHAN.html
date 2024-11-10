@@ -183,23 +183,23 @@ input[type="submit"]:hover {
     <p>Empower yourself with the right tools for physical and mental well-being. Explore our self-care resources.</p>
     <div class="row">
         <div class="card">
-            <h3><a href="nutrition-tracker.html">Nutrition Tracker</a></h3>
+            <h3><a href="nutrition-tracker.html"style="color:#ff8da3">Nutrition Tracker</a></h3>
             <p>Keep track of your meals and nutritional intake to maintain a balanced diet and healthy lifestyle.</p>
         </div>
         <div class="card">
-            <h3><a href="exercise-plans.html">Exercise Plans</a></h3>
+            <h3><a href="exercise-plans.html"style="color:#ff8da3">Exercise Plans</a></h3>
             <p>Follow customized workout plans that cater to your fitness goals, whether it's for general health or specific conditions.</p>
         </div>
         <div class="card">
-            <h3><a href="stress-management.html">Stress Management</a></h3>
+            <h3><a href="stress-management.html"style="color:#ff8da3">Stress Management</a></h3>
             <p>Learn techniques for reducing stress, anxiety, and improving mental health, including mindfulness exercises and breathing techniques.</p>
         </div>
         <div class="card">
-            <h3><a href="period-tracker.html">Period Tracker</a></h3>
+            <h3><a href="period-tracker.html"style="color:#ff8da3">Period Tracker</a></h3>
             <p>Track your menstrual cycle and receive insights on your health.</p>
         </div>
         <div class="card">
-            <h3><a href="daily-journal.html">Daily Journal and Reflection Diary</a></h3>
+            <h3><a href="daily-journal.html"style="color:#ff8da3">Daily Journal and Reflection Diary</a></h3>
             <p>Record your thoughts and reflections to boost mental well-being.</p>
         </div>
     </div>
@@ -220,14 +220,17 @@ input[type="submit"]:hover {
         <div class="row">
             <div class="card">
                 <h3>Articles and Blogs</h3>
+                <a href="educational-resources.html" class="resources-link"style="color:#ff8da3">Go to Educational Resources</a>
                 <p>Read informative articles on topics like pregnancy, menopause, mental health, and more. Updated regularly for your benefit.</p>
             </div>
             <div class="card">
                 <h3>Video Tutorials</h3>
+                <a href="video-tutorials.html" class="tutorials-link"style="color:#ff8da3">Go to Video Tutorials</a>
                 <p>Watch expert videos on health, wellness, and self-care practices. Learn from doctors and specialists in a visual format.</p>
             </div>
             <div class="card">
                 <h3>Workshops and Webinars</h3>
+                <a href="WWFAQ.html" class="FAQ-link"style="color:#ff8da3">Go to Frequently asked questions</a>
                 <p>Join online workshops and webinars that cover a wide range of health-related topics. Participate in live Q&A sessions with professionals.</p>
             </div>
         </div>
@@ -244,25 +247,30 @@ input[type="submit"]:hover {
     <section id="contact-us">
         <h2>Contact Us</h2>
         <p>If you have any questions or would like to schedule a consultation, feel free to get in touch with us.</p>
-        <form action="submit_form.php" method="POST">
+        <form id="contactForm" action="submit_form.php" method="POST" novalidate>
             <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" required><br>
-
+            <input type="text" id="name" name="name" required pattern="^[A-Za-z\s]{3,50}$" placeholder="Enter your full name" title="Name should be between 3 and 50 characters and contain only letters." aria-describedby="nameError">
+            <small id="nameError" class="error-message"></small>
+    
             <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" required><br>
-
+            <input type="email" id="email" name="email" required placeholder="example@domain.com" title="Please enter a valid email address." aria-describedby="emailError">
+            <small id="emailError" class="error-message"></small>
+    
             <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required><br>
-
+            <input type="tel" id="phone" name="phone" required pattern="^\d{10}$" placeholder="10-digit phone number" title="Phone number should be 10 digits." aria-describedby="phoneError">
+            <small id="phoneError" class="error-message"></small>
+    
             <label for="address">Address:</label>
-            <textarea id="address" name="address" rows="4" required></textarea><br>
-
+            <textarea id="address" name="address" rows="4" required minlength="10" maxlength="200" placeholder="Enter your address" title="Address should be between 10 and 200 characters." aria-describedby="addressError"></textarea>
+            <small id="addressError" class="error-message"></small>
+    
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required><br>
-
+            <input type="number" id="age" name="age" required min="12" max="100" placeholder="Age (12 - 100)" title="Age should be between 12 and 100." aria-describedby="ageError">
+            <small id="ageError" class="error-message"></small>
+    
             <label for="blood-group">Blood Group:</label>
-            <select id="blood-group" name="blood-group" required>
-                <option value="select blood group">select blood group</option>
+            <select id="blood-group" name="blood-group" required aria-describedby="bloodGroupError">
+                <option value="">Select blood group</option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -271,17 +279,62 @@ input[type="submit"]:hover {
                 <option value="AB-">AB-</option>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
-            </select><br><br>
-
+            </select>
+            <small id="bloodGroupError" class="error-message"></small>
+    
             <label for="message">Your Ailment:</label>
-            <textarea id="message" name="message" rows="4" required></textarea><br><br>
-
+            <textarea id="message" name="message" rows="4" required minlength="10" maxlength="500" placeholder="Describe your ailment" title="Ailment description should be between 10 and 500 characters." aria-describedby="messageError"></textarea>
+            <small id="messageError" class="error-message"></small>
+    
             <input type="submit" value="Submit">
         </form>
-        <br>
-        <br>
-        <br>
     </section>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            let isValid = true;
+    
+            // Reset all error messages
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    
+            // Custom validation
+            function validateField(field, errorMessage) {
+                if (!field.checkValidity()) {
+                    document.getElementById(field.getAttribute('aria-describedby')).textContent = errorMessage;
+                    isValid = false;
+                }
+            }
+    
+            // Validate each field with custom messages
+            validateField(document.getElementById('name'), 'Please enter a valid name (3-50 alphabetic characters).');
+            validateField(document.getElementById('email'), 'Please enter a valid email address.');
+            validateField(document.getElementById('phone'), 'Please enter a 10-digit phone number.');
+            validateField(document.getElementById('address'), 'Address should be between 10 and 200 characters.');
+            validateField(document.getElementById('age'), 'Please enter an age between 18 and 100.');
+            validateField(document.getElementById('blood-group'), 'Please select a blood group.');
+            validateField(document.getElementById('message'), 'Description should be between 10 and 500 characters.');
+    
+            // If all fields are valid, submit the form
+            if (isValid) {
+                this.submit();
+            }
+        });
+    </script>
+    
+    <style>
+        /* Error message styling */
+        .error-message {
+            color: #ff6666;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+     <br>
+     <br>
+     <br>
+
 </main>
 
 <footer>

@@ -1,19 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stress Management</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
-        h1 { color: #ff8da3; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stress Management & Mental Health</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8d9e4;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #666;
+    }
+
+    section {
+      margin-top: 30px;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .exercise {
+      margin: 20px 0;
+    }
+
+    .timer {
+      font-size: 2em;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    button:hover {
+      background-color: #fbb6d0;
+    }
+
+    .breathing-techniques,
+    .mindfulness-techniques {
+      font-size: 1.1em;
+      color: #444;
+    }
+
+    ul {
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .anxiety-techniques {
+      font-size: 1.1em;
+      color: #444;
+      text-align: left;
+      padding: 10px 0;
+    }
+
+    .anxiety-techniques li {
+      margin-bottom: 15px;
+    }
+
+    .anxiety-techniques h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .anxiety-techniques p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: #ff80ab;
+      margin: 20px auto;
+      transition: transform 4s ease-in-out;
+    }
+
+    .pulse {
+      animation: pulseAnimation 4s infinite;
+    }
+
+    @keyframes pulseAnimation {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <header>
-        <h1>Stress Management</h1>
+      <h1>Stress Management & Mental Health</h1>
+      <p>Take a deep breath, relax, and focus on your well-being.</p>
     </header>
-    <p>Discover techniques for managing stress, anxiety, and improving mental health, including mindfulness exercises and breathing techniques.</p>
-    <!-- Add tools or resources for stress management here -->
+
+    <!-- Breathing Exercise Section -->
+    <section id="breathing-section">
+      <h2>Breathing Exercises</h2>
+      
+      <!-- Standard Breathing Exercise -->
+      <div class="exercise">
+        <h3>Standard Breathing</h3>
+        <p>Follow the breathing pattern to relax and reduce stress.</p>
+        <div id="breathing-timer" class="timer">00:00</div>
+        <button id="start-breathing" onclick="startBreathing()">Start</button>
+        <button id="pause-breathing" onclick="pauseBreathing()" disabled>Pause</button>
+      </div>
+
+      <!-- Box Breathing -->
+      <div class="exercise">
+        <h3>Box Breathing</h3>
+        <p>Inhale for 4 seconds, hold for 4 seconds, exhale for 4 seconds, and hold again for 4 seconds.</p>
+        <div id="box-breathing-timer" class="timer">00:00</div>
+        <button id="start-box-breathing" onclick="startBoxBreathing()">Start</button>
+        <button id="pause-box-breathing" onclick="pauseBoxBreathing()" disabled>Pause</button>
+      </div>
+
+      <!-- 4-7-8 Breathing -->
+      <div class="exercise">
+        <h3>4-7-8 Breathing</h3>
+        <p>Inhale for 4 seconds, hold for 7 seconds, exhale for 8 seconds.</p>
+        <div id="four-seven-eight-timer" class="timer">00:00</div>
+        <button id="start-four-seven-eight" onclick="startFourSevenEight()">Start</button>
+        <button id="pause-four-seven-eight" onclick="pauseFourSevenEight()" disabled>Pause</button>
+      </div>
+
+      <!-- Diaphragmatic Breathing -->
+      <div class="exercise">
+        <h3>Diaphragmatic Breathing</h3>
+        <p>Focus on breathing deeply into your diaphragm rather than shallow chest breaths.</p>
+        <div id="diaphragmatic-timer" class="timer">00:00</div>
+        <button id="start-diaphragmatic" onclick="startDiaphragmatic()">Start</button>
+        <button id="pause-diaphragmatic" onclick="pauseDiaphragmatic()" disabled>Pause</button>
+      </div>
+      
+      <div class="breathing-techniques">
+        <ul>
+          <li><strong>Inhale:</strong> Breathe in for 4 seconds</li>
+          <li><strong>Hold:</strong> Hold for 4 seconds</li>
+          <li><strong>Exhale:</strong> Exhale for 6 seconds</li>
+        </ul>
+      </div>
+      <div id="breathing-visual" class="circle"></div>
+    </section>
+
+    <!-- Mindfulness Section -->
+    <section id="mindfulness-section">
+      <h2>Mindfulness Exercise</h2>
+      <div class="exercise">
+        <p>Focus on the present moment with this mindfulness practice.</p>
+        <div id="mindfulness-timer" class="timer">00:00</div>
+        <button id="start-mindfulness" onclick="startMindfulness()">Start</button>
+        <button id="pause-mindfulness" onclick="pauseMindfulness()" disabled>Pause</button>
+      </div>
+      <div class="mindfulness-techniques">
+        <p>Notice your breath, surroundings, and how you feel right now.</p>
+        <p>Focus on each sensation and let go of distractions.</p>
+      </div>
+    </section>
+
+    <!-- Smiling Exercise -->
+  <div class="exercise-section">
+    <h2>Smiling Exercise</h2>
+    <button id="start-smiling" onclick="startSmiling()">Start Smiling</button>
+    <button id="pause-smiling" onclick="pauseSmiling()" disabled>Pause Smiling</button>
+    <div id="smiling-timer" class="timer">00:00</div>
+  </div>
+
+  <script>
+    let smilingTime = 0;
+    let smilingTimer;
+    
+    function startSmiling() {
+      document.getElementById('start-smiling').disabled = true;
+      document.getElementById('pause-smiling').disabled = false;
+      smilingTimer = setInterval(() => {
+        smilingTime++;
+        document.getElementById('smiling-timer').innerText = formatTime(smilingTime);
+      }, 1000);
+    }
+
+    function pauseSmiling() {
+      clearInterval(smilingTimer);
+      document.getElementById('start-smiling').disabled = false;
+      document.getElementById('pause-smiling').disabled = true;
+    }
+
+    function formatTime(time) {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+  </script>
+
+    <!-- Anxiety Reduction Techniques Section -->
+    <section id="anxiety-section">
+      <h2>Anxiety Reduction Techniques</h2>
+      <div class="anxiety-techniques">
+        <h3>1. Progressive Muscle Relaxation (PMR)</h3>
+        <p>
+          Progressive Muscle Relaxation (PMR) involves tensing and then slowly relaxing different muscle groups in your body. This helps reduce physical tension and promotes relaxation.
+        </p>
+        <ul>
+          <li>Start by sitting or lying in a comfortable position.</li>
+          <li>Begin with your toes: tense the muscles for 5-10 seconds and then release, letting go of the tension.</li>
+          <li>Move up through your body, tense and release each muscle group: feet, calves, thighs, abdomen, chest, arms, shoulders, and neck.</li>
+          <li>After completing all muscle groups, take a few deep breaths and enjoy the calm feeling.</li>
+        </ul>
+
+        <h3>2. Visualization and Guided Imagery</h3>
+        <p>
+          Visualization is a powerful technique where you mentally imagine a peaceful, calming scene. This helps shift focus away from anxiety.
+        </p>
+        <ul>
+          <li>Find a quiet, comfortable space.</li>
+          <li>Close your eyes and take deep breaths to calm your mind.</li>
+          <li>Visualize a place that makes you feel relaxed—perhaps a beach, forest, or meadow.</li>
+          <li>Imagine yourself there, using all five senses to enhance the experience—hear the waves, smell the fresh air, and feel the warmth of the sun.</li>
+          <li>Stay in this peaceful place for a few minutes before slowly coming back to the present moment.</li>
+        </ul>
+        <h3>3. Grounding Techniques</h3>
+        <p>
+          Grounding techniques are simple methods to help you stay in the present moment, especially during times of high anxiety. Here’s a popular grounding exercise:
+        </p>
+        <ul>
+          <li>Look around you and name five things you can see.</li>
+          <li>Next, identify four things you can feel (e.g., your feet on the ground, the air on your skin).</li>
+          <li>Then, identify three things you can hear (e.g., a ticking clock, cars passing by).</li>
+          <li>After that, notice two things you can smell (e.g., fresh air, a scent in the room).</li>
+          <li>Finally, taste something if possible—maybe a sip of water or a small piece of food.</li>
+        </ul>
+
+        <h3>4. Self-Compassion Break</h3>
+        <p>
+          Sometimes, anxiety arises from self-criticism. Practicing self-compassion can alleviate this. Here’s how:
+        </p>
+        <ul>
+          <li>Take a moment to acknowledge your feelings of stress or anxiety.</li>
+          <li>Speak to yourself gently, like you would to a close friend who is feeling the same way. Say something like, “It’s okay to feel anxious. I am doing my best, and I am allowed to take breaks.”</li>
+          <li>Place a hand over your heart or stomach to center yourself and calm your emotions.</li>
+          <li>Take a few deep breaths while repeating a kind mantra, such as “I am enough” or “This too shall pass.”</li>
+        </ul>
+
+        <h3>5. Breathing Techniques for Calm</h3>
+        <p>
+          Deep breathing is one of the simplest ways to reduce anxiety. Here are a few variations to try:
+        </p>
+        <ul>
+          <li><strong>Box Breathing:</strong> Inhale for 4 seconds, hold for 4 seconds, exhale for 4 seconds, and hold again for 4 seconds. Repeat this cycle for 3-5 minutes.</li>
+          <li><strong>4-7-8 Breathing:</strong> Inhale for 4 seconds, hold for 7 seconds, and exhale for 8 seconds. Repeat for 4 cycles.</li>
+          <li><strong>Diaphragmatic Breathing:</strong> Focus on breathing deeply into your diaphragm (the area just below your ribs) rather than shallow chest breaths.</li>
+        </ul>
+
+        <h3>6. Journaling for Stress Relief</h3>
+        <p>
+          Writing about your emotions can help clarify your thoughts and reduce anxiety. Try these journaling prompts:
+        </p>
+        <ul>
+          <li>Write down three things that went well today and why.</li>
+          <li>Reflect on something that’s been bothering you and express your feelings about it.</li>
+          <li>Write a letter to yourself offering support, love, and encouragement.</li>
+          <li>List five things you’re grateful for right now.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Timer functions for each breathing exercise
+
+    let breathingTimer, boxBreathingTimer, fourSevenEightTimer, diaphragmaticTimer, mindfulnessTimer;
+    let breathingTime = 0, boxBreathingTime = 0, fourSevenEightTime = 0, diaphragmaticTime = 0, mindfulnessTime = 0;
+
+    function startBreathing() {
+      document.getElementById('start-breathing').disabled = true;
+      document.getElementById('pause-breathing').disabled = false;
+      breathingTimer = setInterval(() => {
+        breathingTime++;
+        document.getElementById('breathing-timer').innerText = formatTime(breathingTime);
+      }, 1000);
+    }
+
+    function pauseBreathing() {
+      clearInterval(breathingTimer);
+      document.getElementById('start-breathing').disabled = false;
+      document.getElementById('pause-breathing').disabled = true;
+    }
+
+    function startBoxBreathing() {
+      document.getElementById('start-box-breathing').disabled = true;
+      document.getElementById('pause-box-breathing').disabled = false;
+      boxBreathingTimer = setInterval(() => {
+        boxBreathingTime++;
+        document.getElementById('box-breathing-timer').innerText = formatTime(boxBreathingTime);
+      }, 1000);
+    }
+
+    function pauseBoxBreathing() {
+      clearInterval(boxBreathingTimer);
+      document.getElementById('start-box-breathing').disabled = false;
+      document.getElementById('pause-box-breathing').disabled = true;
+    }
+
+    function startFourSevenEight() {
+      document.getElementById('start-four-seven-eight').disabled = true;
+      document.getElementById('pause-four-seven-eight').disabled = false;
+      fourSevenEightTimer = setInterval(() => {
+        fourSevenEightTime++;
+        document.getElementById('four-seven-eight-timer').innerText = formatTime(fourSevenEightTime);
+      }, 1000);
+    }
+
+    function pauseFourSevenEight() {
+      clearInterval(fourSevenEightTimer);
+      document.getElementById('start-four-seven-eight').disabled = false;
+      document.getElementById('pause-four-seven-eight').disabled = true;
+    }
+
+    function startDiaphragmatic() {
+      document.getElementById('start-diaphragmatic').disabled = true;
+      document.getElementById('pause-diaphragmatic').disabled = false;
+      diaphragmaticTimer = setInterval(() => {
+        diaphragmaticTime++;
+        document.getElementById('diaphragmatic-timer').innerText = formatTime(diaphragmaticTime);
+      }, 1000);
+    }
+
+    function pauseDiaphragmatic() {
+      clearInterval(diaphragmaticTimer);
+      document.getElementById('start-diaphragmatic').disabled = false;
+      document.getElementById('pause-diaphragmatic').disabled = true;
+    }
+
+    function startMindfulness() {
+      document.getElementById('start-mindfulness').disabled = true;
+      document.getElementById('pause-mindfulness').disabled = false;
+      mindfulnessTimer = setInterval(() => {
+        mindfulnessTime++;
+        document.getElementById('mindfulness-timer').innerText = formatTime(mindfulnessTime);
+      }, 1000);
+    }
+
+    function pauseMindfulness() {
+      clearInterval(mindfulnessTimer);
+      document.getElementById('start-mindfulness').disabled = false;
+      document.getElementById('pause-mindfulness').disabled = true;
+    }
+
+    function formatTime(time) {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+  </script>
 </body>
 </html>

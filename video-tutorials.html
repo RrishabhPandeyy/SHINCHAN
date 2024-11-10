@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Tutorials</title>
+  <style>
+    /* Basic Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8c1c1;
+      color: #333;
+    }
+    header, .video-grid {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #e75480; /* Light pink */
+    }
+
+    /* Category Navigation */
+    .category-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .category-nav a {
+      text-decoration: none;
+      padding: 8px 16px;
+      background-color: #ffb6c1;
+      color: #333;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
+    }
+    .category-nav a:hover {
+      background-color: #e75480;
+      color: #fff;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+    .search-bar button {
+      padding: 10px 20px;
+      background-color: #e75480;
+      border: none;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .search-bar button:hover {
+      background-color: #d43d69;
+    }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background-color: #eceaea;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.3s ease;
+    }
+    .video-card:hover {
+      transform: scale(1.05);
+    }
+    .video-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .video-info {
+      padding: 15px;
+    }
+    .video-title {
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .video-description {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Video Tutorials</h1>
+  <p>Explore our collection of video tutorials on women’s health and wellness topics.</p>
+  
+  <!-- Category Navigation -->
+  <nav class="category-nav">
+    <a href="#menstrual-health">Menstrual Health</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#mental-health">Mental Health</a>
+    <a href="#fitness-exercise">Fitness & Exercise</a>
+    <a href="#yoga-meditation">Yoga & Meditation</a>
+    <a href="#reproductive-health">Reproductive Health</a>
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search for a topic...">
+    <button>Search</button>
+  </div>
+</header>
+
+<!-- Video Grid -->
+<div class="video-grid">
+  <!-- Video Card 1 -->
+  <a href="https://www.youtube.com/watch?v=ZsUh9i8yB0g" class="video-card" target="_blank">
+    <img src="https://img.youtube.com/vi/ZsUh9i8yB0g/maxresdefault.jpg" alt="Understanding the Menstrual Cycle">
+    <div class="video-info">
+      <h2 class="video-title">Understanding the Menstrual Cycle</h2>
+      <p class="video-description">A comprehensive guide to understanding the menstrual cycle, symptoms, and care tips.</p>
+    </div>
+  </a>
+
+  <!-- Video Card 2 -->
+  <a href="https://www.youtube.com/watch?v=LZqeypXPzro" class="video-card" target="_blank">
+    <img src="https://img.youtube.com/vi/LZqeypXPzro/maxresdefault.jpg" alt="Nutrition for Women’s Health">
+    <div class="video-info">
+      <h2 class="video-title">Nutrition for Women’s Health</h2>
+      <p class="video-description">Explore essential nutrients and dietary tips for maintaining a healthy lifestyle.</p>
+    </div>
+  </a>
+
+  <!-- Video Card 3 -->
+  <a href="https://www.youtube.com/watch?v=Yzm3fA2HhkQ" class="video-card" target="_blank">
+    <img src="https://img.youtube.com/vi/Yzm3fA2HhkQ/maxresdefault.jpg" alt="Yoga for Stress Relief">
+    <div class="video-info">
+      <h2 class="video-title">Yoga for Stress Relief</h2>
+      <p class="video-description">Discover yoga poses and breathing techniques to help reduce stress and improve mental well-being.</p>
+    </div>
+  </a>
+
+  <!-- Video Card 4 -->
+  <a href="https://www.youtube.com/watch?v=kdZocJ3wyiM" class="video-card" target="_blank">
+    <img src="https://img.youtube.com/vi/kdZocJ3wyiM/maxresdefault.jpg" alt="Fitness and Exercise for Women">
+    <div class="video-info">
+      <h2 class="video-title">Fitness and Exercise for Women</h2>
+      <p class="video-description">Guided exercises specifically tailored to support women's health and fitness goals.</p>
+    </div>
+  </a>
+
+  <!-- Video Card 5 -->
+  <a href="https://www.youtube.com/watch?v=H9Sm3mvHwrQ" class="video-card" target="_blank">
+    <img src="https://img.youtube.com/vi/H9Sm3mvHwrQ/maxresdefault.jpg" alt="Reproductive Health Essentials">
+    <div class="video-info">
+      <h2 class="video-title">Reproductive Health Essentials</h2>
+      <p class="video-description">An overview of reproductive health basics and tips for maintaining reproductive wellness.</p>
+    </div>
+  </a>
+</div>
+
+</body>
+</html>
